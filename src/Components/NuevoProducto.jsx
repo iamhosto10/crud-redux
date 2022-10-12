@@ -2,22 +2,26 @@ import React, { useState } from "react";
 
 //redux
 import { crearNuevoProductoAction } from "../actions/productoActions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function NuevoProducto() {
-  const [nombre, setNombre] = useState("");
-  const [precio, setPrecio] = useState(0);
+  const [nombre, setNombre] = useState(""); // nombre del producto que se va a añadir
+  const [precio, setPrecio] = useState(0); // precio del producto que se va a añdir
 
-  // usando el dispatch
-  const dispatch = useDispatch;
+  // usando el dispatch funcion
+  const dispatch = useDispatch();
 
+  //llamar el dispatch de el state en este caso agregar producto
   const agregarProducto = (producto) =>
     dispatch(crearNuevoProductoAction(producto));
+
   const submitNuevoProducto = (e) => {
     e.preventDefault();
+    // valida que los datos no sean  nulos
     if (nombre.trim() === "" || precio <= 0) {
       return;
     }
+    // agrega el producto a la api y al estado
     agregarProducto({ nombre, precio });
   };
   return (
@@ -31,7 +35,7 @@ function NuevoProducto() {
               </h2>
               <form onSubmit={submitNuevoProducto}>
                 <div className="form-group">
-                  <lable>Nombre Producto</lable>
+                  <label>Nombre Producto</label>
                   <input
                     type="text"
                     className="form-control"
@@ -41,7 +45,7 @@ function NuevoProducto() {
                   />
                 </div>
                 <div className="form-group">
-                  <lable>Precio Producto</lable>
+                  <label>Precio Producto</label>
                   <input
                     type="number"
                     className="form-control"

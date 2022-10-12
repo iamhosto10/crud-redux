@@ -24,16 +24,6 @@
       "nombre": "Jugo de Fresa",
       "precio": "200",
       "id": 5
-    },
-    {
-      "nombre": "hola",
-      "precio": 12,
-      "id": 6
-    },
-    {
-      "nombre": "hola32",
-      "precio": 124,
-      "id": 7
     }
   ]
 }
