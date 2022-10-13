@@ -5,8 +5,12 @@ import {
   OBTENER_PRODUCTO,
   OBTENER_PRODUCTO_EXITO,
   OBTENER_PRODUCTO_ERROR,
+  OBTENER_PRODUCTO_ELIMINAR,
+  OBTENER_PRODUCTO_ELIMINAR_ERROR,
+  OBTENER_PRODUCTO_ELIMINAR_EXITO
 } from "../types";
 import clienteAxios from "../config/axios.js";
+import axios from "axios";
 
 const agregarProducto = () => ({
   type: AGREGAR_PRODUCTO,
@@ -28,14 +32,29 @@ const obtenerproducto = () => ({
   payload: true,
 });
 
-const obtenerProductoExito = () => ({
+const obtenerProductoExito = (productos) => ({
   type: OBTENER_PRODUCTO_EXITO,
-  payload: true,
+  payload: productos,
 });
 
-const obtenerProductoError = () => ({
+const obtenerProductoError = (boolean) => ({
   type: OBTENER_PRODUCTO_ERROR,
-  payload: true,
+  payload: boolean,
+});
+
+const eliminarProductobyid = (id) =>({
+  type:OBTENER_PRODUCTO_ELIMINAR,
+  payload:id,
+});
+
+const eliminarProductoExito = () =>({
+  type:OBTENER_PRODUCTO_ELIMINAR_EXITO,
+});
+
+const eliminarProductoError = (boolean) =>({
+  type:OBTENER_PRODUCTO_ELIMINAR_ERROR,
+  payload:boolean,
+
 });
 
 export function crearNuevoProductoAction(producto) {
@@ -52,13 +71,28 @@ export function crearNuevoProductoAction(producto) {
   };
 }
 
+//obtener productos para mostrarlos en la tabla
 export function obtenerProductosAction() {
   return async (dispatch) => {
-    dispatch(obtenerproducto);
+    dispatch(obtenerproducto());
     try {
-      dispatch(obtenerProductoExito);
+      const response = await clienteAxios.get('/productos');
+      dispatch(obtenerProductoExito(response.data));
     } catch (e) {
-      dispatch(obtenerProductoError);
+      dispatch(obtenerProductoError(true));
     }
   };
+}
+
+// obtener el producto a eliminar
+export function eliminarProducto(id){
+  return async (dispatch)=>{
+    dispatch(eliminarProductobyid(id));
+    try{
+      await clienteAxios.delete(`/productos/${id}`);
+      dispatch(eliminarProductoExito());
+    }catch(e){
+      dispatch(eliminarProductoError(true));
+    }
+  }
 }

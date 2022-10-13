@@ -12,7 +12,7 @@ function EditarProductos() {
               </h2>
               <form>
                 <div className="form-group">
-                  <lable>Nombre Producto</lable>
+                  <label>Nombre Producto</label>
                   <input
                     type="text"
                     className="form-control"
@@ -21,7 +21,7 @@ function EditarProductos() {
                   />
                 </div>
                 <div className="form-group">
-                  <lable>Precio Producto</lable>
+                  <label>Precio Producto</label>
                   <input
                     type="number"
                     className="form-control"

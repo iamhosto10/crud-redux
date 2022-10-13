@@ -18,7 +18,7 @@ function App() {
 
   return (
     <Router>
-      <Provider store={store}>
+      {/* <Provider store={store}> */}
         <Header />
         <div className="container mt-5">
           <Routes>
@@ -27,7 +27,7 @@ function App() {
             <Route path="/productos/editar/:id" element={<EditarProductos />} />
           </Routes>
         </div>
-      </Provider>
+      {/* </Provider> */}
     </Router>
   );
 }
