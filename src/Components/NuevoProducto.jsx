@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 //redux
 import { crearNuevoProductoAction } from "../actions/productoActions";
 import { useDispatch } from "react-redux";
@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 function NuevoProducto() {
   const [nombre, setNombre] = useState(""); // nombre del producto que se va a añadir
   const [precio, setPrecio] = useState(0); // precio del producto que se va a añdir
+  const navigate = useNavigate(); // navigate para redirigir el form
 
   // usando el dispatch funcion
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function NuevoProducto() {
     }
     // agrega el producto a la api y al estado
     agregarProducto({ nombre, precio });
+    navigate("/", { replace: true });
   };
   return (
     <>
@@ -54,6 +56,7 @@ function NuevoProducto() {
                     onChange={(e) => setPrecio(Number(e.target.value))}
                   />
                 </div>
+
                 <button
                   type="submit"
                   className="btn btn-primary font-weight-bold text-uppercase d-block w-100"

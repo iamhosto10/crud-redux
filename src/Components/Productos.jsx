@@ -1,25 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 //redux
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { obtenerProductosAction } from "../actions/productoActions";
 import Producto from "./Producto";
 
 function Productos() {
+  const [actualizar, setActualizar] = useState(true);
   const dispatch = useDispatch();
-  const productos = useSelector(state => state.productos.productos);
+  const productos = useSelector((state) => state.productos.productos);
   useEffect(() => {
     const cargarProductos = () => dispatch(obtenerProductosAction());
     cargarProductos();
-  }, [])
+  }, [actualizar]);
 
-  
-  const error = useSelector(state => state.productos.error)
+  const error = useSelector((state) => state.productos.error);
 
   return (
     <>
       <h2 className="text-center my-5">Productos</h2>
-      {error ? <p className="font-weight-bold alert alert-danger text-center mt-4">Hubo un error</p> : null}
+      {error ? (
+        <p className="font-weight-bold alert alert-danger text-center mt-4">
+          Hubo un error
+        </p>
+      ) : null}
       <table className="table table-striped">
         <thead className="bg-primary table-dark">
           <tr>
@@ -29,9 +33,22 @@ function Productos() {
           </tr>
         </thead>
         <tbody>
-          { productos.length === 0 ? (<tr><td>No hay productos para mostrar</td><td>No hay productos para mostrar</td><td>No hay productos para mostrar</td></tr> ):
-           (productos.map(producto =>(
-           <Producto key = {producto.id} producto={producto} />)))}
+          {productos.length === 0 ? (
+            <tr>
+              <td>No hay productos para mostrar</td>
+              <td>No hay productos para mostrar</td>
+              <td>No hay productos para mostrar</td>
+            </tr>
+          ) : (
+            productos.map((producto) => (
+              <Producto
+                key={producto.id}
+                producto={producto}
+                actualizar={actualizar}
+                setActualizar={setActualizar}
+              />
+            ))
+          )}
         </tbody>
       </table>
     </>

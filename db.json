@@ -1,14 +1,44 @@
 {
   "productos": [
     {
-      "id": 1,
-      "nombre": "Jugo de Zanahoria",
-      "precio": "31111"
+      "nombre": "hola",
+      "precio": 1000000,
+      "id": 6
     },
     {
-      "nombre": "juego 1",
-      "precio": 17,
-      "id": 5
+      "nombre": "hola15",
+      "precio": 1212423,
+      "id": 8
+    },
+    {
+      "nombre": "hola164",
+      "precio": 12124343,
+      "id": 9
+    },
+    {
+      "nombre": "producto nuevo",
+      "precio": 1562,
+      "id": 10
+    },
+    {
+      "nombre": "hidpsj",
+      "precio": 15264,
+      "id": 11
+    },
+    {
+      "nombre": "fsdf",
+      "precio": 123423,
+      "id": 12
+    },
+    {
+      "nombre": "holads123",
+      "precio": 4165,
+      "id": 13
+    },
+    {
+      "nombre": "papa",
+      "precio": 12354,
+      "id": 14
     }
   ]
 }
